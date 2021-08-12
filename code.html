@@ -63,17 +63,66 @@
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            //Call Hello World
-                            function HelloWorld(){
-                                alert("Hello World");
+                            //get the values from the Page
+                            //starts or controller function
+                            function getValues() {
+                                //get values from the page
+                                let startValue = document.getElementById("startValue").value;
+                                let endValue = document.getElementById("endValue").value;
+                            
+                                //We need to validate our input
+                                //parse into Integers
+                                startValue = parseInt(startValue);
+                                endValue = parseInt(endValue);
+                            
+                                if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                    //we call generateNumbers
+                                    let numbers = generateNumbers(startValue, endValue);
+                                    //we call displayNumbers
+                                    displayNumbers(numbers);
+                                }else{
+                                    alert("You must enter integers");
+                                }
+                            }
+                            
+                            //generate numbers from startValue to endValue
+                            //logic function(s)
+                            function generateNumbers(startValue, endValue) {
+                                let numbers = [];
+                            
+                                //we want to get all numbers from start to end
+                                for(let i = startValue; i <= endValue; i++) {
+                                    numbers.push(i);
+                                }
+                            
+                                return numbers;
+                            }
+                            
+                            //display even numbers in bold
+                            //displays or view functions
+                            function displayNumbers(numbers) {
+                            
+                                let templateRows = "";
+                            
+                                numbers.forEach(number => {
+                                    if (number % 2 == 0) {
+                                        //This does not render in prism because of the HTML.
+                                        templateRows += `<tr><td><strong>${number}</strong></td></tr>`
+                                    } else {
+                                        templateRows += `<tr><td>${number}</td></tr>`
+                                    }
+                                });
+                            
+                                document.getElementById("results").innerHTML = templateRows;
+                            
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
                     <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World."</p>
+                    <h5>HUNDO</h5>
+                    <p>Consists of a few functions that accept a start and end value then displays them on the screen.</p>
                 </div>
             </div>
         </div>
